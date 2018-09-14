@@ -1,0 +1,17 @@
+Project:
+  Ball bouncing:    @due(2018-10-1)
+    ✔ A Container Class @critical @done (18-09-11 20:18)
+    ☐ FIX Collision.reflect() @critical
+    ☐ Github Repository 
+    ☐ Pressure caculating @critical
+    ☐ Connect with util/NACA_Produce.py @critical
+  NACA stuff:
+    ☐ Reduce points number while keeping its shape alike @high
+    ☐ Tidy up code! @low 
+  Software Simulation:
+    ☐ Find A Nice Software 
+
+  What's Next?:
+    ☐ Build something with BEM 
+    ☐ MEOW
+   
