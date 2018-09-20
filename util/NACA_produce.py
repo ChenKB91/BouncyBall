@@ -28,7 +28,8 @@ def main(serial, rot_angle):
     P=A2/10
     O = [0.25,0.0]
 
-    dX_fine = 0.01
+    dX_finest = 0.0125
+    dX_fine = 0.025
     dX_medium = 0.05 
     dX_rough = 0.1
 
@@ -78,10 +79,12 @@ def main(serial, rot_angle):
 
     final = []
 
-    while (X<=C) :   ####DO UPPER PART
-        if X<0.1 :
+    while (X <= C) :   ####DO UPPER PART
+        if X < 0.025:
+            dX = dX_finest
+        elif X < 0.1 :
             dX = dX_fine
-        elif X<0.3 :
+        elif X <= 0.3 :
             dX = dX_medium
         else:
             dX = dX_rough
@@ -125,10 +128,15 @@ def main(serial, rot_angle):
         X -= dX
 
     X = 0
-    while (X<C+dX) :  ####DO LOWER PART
-        if X<0.1 :
+    while (X<C-dX) :  ####DO LOWER PART
+        
+        X += dX
+
+        if X < 0.025:
+            dX = dX_finest
+        elif X < 0.1 :
             dX = dX_fine
-        elif X<0.3 :
+        elif X < 0.3 :
             dX = dX_medium
         else:
             dX = dX_rough
@@ -172,8 +180,6 @@ def main(serial, rot_angle):
         #print(round(X_L,3),round(Y_L,5))
         # print(round(X,3),round(Yt,5))
 
-        
-        X += dX
     #print(final)
     return final
 

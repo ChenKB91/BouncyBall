@@ -45,11 +45,13 @@ for line in line_list:
         #print(line)
 print('file loaded, total point: %d'%len(final))
 '''
-name = str(input('input NACA serial number:\n>>> '))
+name = raw_input('input NACA serial number:\n>>> ')
 serial = int(name)
 angle = int(input('input angle:\n>>> '))
 final = naca.main(serial, angle)
 print('total points: %d' % len(final))
+for i in range(len(final)):
+    print('%.5f' % final[i][0] + ('%.5f' % final[i][1]).rjust(10) )
 
 orig_x, orig_y = -length/2, 0
 color("#FD8008", "#FECC66")
