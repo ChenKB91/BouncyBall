@@ -6,12 +6,18 @@ Project:
     ✔ Pressure caculating @critical @done (18-09-20 16:43)
     ☐ Connect with util/NACA_Produce.py @critical
   NACA stuff:
-    ☐ Reduce points number while keeping its shape alike @high
+    ✔ Reduce points number while keeping its shape alike @high @done (18-09-20 23:33)
     ☐ Tidy up code! @low 
+  Essay:
+    ☐ Summary
+    ☐ Main Paragraph
+    ☐ Conclusion
+    ☐ References
   Software Simulation:
     ☐ Find A Nice Software 
 
   What's Next?:
-    ☐ Build something with BEM 
-    ☐ MEOW
+    ☐ Build something with BEM
+    ☐ Build 3D model with NACA_Produce
+    ☐ Find a wind tunnel
    

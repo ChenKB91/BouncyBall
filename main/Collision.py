@@ -1,24 +1,31 @@
 # -*- coding: UTF-8 -*-
 from visual import*
 '''
+----
+    To achieve great things, two things are needed;
+    a plan, and not quite enough time.  -- Leonard Bernstein 
+----
+    To write good code, two things are required;
+    a nice looking editor, and a good amount of coffee.  -- CKB
+----
 Algorithm:
 1. initialize:
-    class wall: generate 1 
+    class wall: generate 1 piece of wall, capable of moving
+                also good for calculating pressure and force etc.
 
 2. on update:
     delete balls which are out of range
     add N balls according to flow rate
     
     get balls bounced off by the wall
-    get balls bounced by each other
+    get balls bounced by one another
     change their speed
     update position of the ball according to speed
 
-    SOMEHOW calculate pressure??
+    calculate force by (momentum changed)/(time passed)
 '''
-#something
 
-class Wall():
+class Wall():  # A piece of wall, makes up class Container
     def __init__(self, wall_list, v):
         self.wall_list = vectorfy(wall_list)
         self.visual = curve(pos = wall_list)
@@ -88,4 +95,3 @@ def vectorfy(points):
     for i in range(len(points)):
         points[i] = vector(points[i])
     return points
-

@@ -23,11 +23,12 @@ r = 0.1 #radius of ball
 
 
 ## visual stuff
-scene = display(x=0,y=0,width=600,height=600,background=(0,0,0),center = vector(11,0) #!vis
+scene = display(x=0,y=0,width=600,height=600,background=(0,0,0),center = vector(0,0) #!vis
                 ,autoscale = False,)  #!vis
 gd = gdisplay(x=600,y=0,width=300,height=300,xtitle='t',title = 'velocity',
               foreground=color.black,background=color.white)
-gd2= gdisplay(x=600,y=300,width=300,height=300,xtitle='t',title = 'Ball N',foreground=color.black,background=color.white)
+gd2= gdisplay(x=600,y=300,width=300,height=300,xtitle='t',title = 'Ball Amount',
+              foreground=color.black,background=color.white)
 
 f1 = gcurve(color=color.blue, gdisplay=gd)
 f2 = gcurve(color=color.red , gdisplay=gd)
@@ -51,7 +52,7 @@ class Container():
         self.limit_udlr = limit_udlr
 
         ## balls
-        self.N = 1  # initial number of ball
+        self.N = 70  # initial number of ball
         self.ball_mass = 0.001  # mass of ball (just a random number, i dot car)
 
         self.v = random.uniform(-30,30,[self.N,3]) #velocity of balls
@@ -111,7 +112,7 @@ class Container():
                         self.v[j] = reflect(w, self.v[j], part.v)
                         
                 
-        for part in self.parts:  # Wrong indent makes it violent....
+        for part in self.parts:  # Cyka blyat....
             part.update_pos(dt)  # update wall position
                 
 
@@ -140,10 +141,9 @@ class Container():
 
 #wall1 = [[3,3],[3,-10],[-3,-10],[-3,3]]
 #wall2 = [[-3,3],[3,3]] 
-pipe = [[0,3],[22,3],[22,-3],[0,-3]]  #pipe
-pipe2 = [[0,3],[8,3],[16,1],[22,1],[22,-1],[16,-1],[8,-3],[0,-3]]  #pipe
-square_s = [[17,1],[15,1],[15,-1],[17,-1],[17,1]]   #square
-#big_square = [[5,5],[5,-5],[-5,-5],[-5,5],[5,5]]
+#wall1 = [[0,3],[22,3],[22,-3],[0,-3]]  #pipe
+#square_s = [[17,1],[15,1],[15,-1],[17,-1],[17,1]]   #square
+big_square = [[5,5],[5,-5],[-5,-5],[-5,5],[5,5]]
 #wall = [[780,0],[1150,-140],[1180,-130],[1170,-90],[970,0],[780,0]]
 '''
 wall = [[0,60],[300,60],[850,240],[900,250],[940,220],[950,170],[940,130],[900,100],[730,60],[1170,40],
@@ -153,10 +153,7 @@ wall = [[0,60],[300,60],[850,240],[900,250],[940,220],[950,170],[940,130],[900,1
 #'''
 
 #wall1,wall2 = vectorfy(wall1), vectorfy(wall2)
-#flow = Container(parts = [Wall(pipe, v = vector(0,0,0)), Wall(square_s, v= vector(-1,0,0))], limit_udlr = (5,-5,-1,20))  #!vis    
-#flow = Container(parts = [Wall(big_square, v = vector(0,0,0))], limit_udlr = (5,-5,-5,5))
-flow = Container(parts = [Wall(pipe2, v = vector(0,0,0))], limit_udlr = (5,-5,0,20))
-
+flow = Container(parts = [Wall(big_square, v = vector(0,0) )], limit_udlr = (5,-5,-5,5))  #!vis    
 
 u_limit = flow.limit_udlr[0]
 d_limit = flow.limit_udlr[1]
@@ -170,20 +167,19 @@ while True:
     dts += 1
     
     #average vel
-    
+    '''
     tmp, tmp2 = 0, 0
     avg, avg2 = 0, 0
     n1, n2= 0 ,0
     for i in range(len(flow.v)):
-        if flow.pos_arr[i][0]<9:
-            ab = abs(vector(flow.v[i]))**2
-            tmp += ab
-            n1 += 1
+        ab = abs(vector(flow.v[i]))**2
+        tmp += ab
+        n1 += 1
     if n1 != 0:
         avg = tmp/n1
     
     for i in range(len(flow.v)):
-        if flow.pos_arr[i][0] > 15:
+        if flow.v[i][0] > 15:
             ab = abs(vector(flow.v[i]))**2
             tmp2 += ab
             n2 += 1
@@ -194,19 +190,19 @@ while True:
         f1.plot(pos = (t,avg))
     if n2 != 0:
         f2.plot(pos = (t,avg2))
-    
+    '''
 
     flow.OnUpdate()  
            
-    if dts % 15 == 0 :
-        #pass
+    if dts % 10 == 0 :
+        pass
         #print('add ball')
-        flow.add_ball(pos = [0,random.random(size = None)*6 - 3,0],vel = [random.random(size = None)*10 +30,random.random(size = None)*10 -5,0])
+        #flow.add_ball(pos = [0,random.random(size = None)*6 - 3,0],vel = [random.random(size = None)*10 +30,random.random(size = None)*10 -5,0])
         #flow.add_ball(pos = [0,random.random(size = None)*6 - 3,0],vel = [50,0,0])
 
-    #if dts % get_force_dts == 0:
-        #f = abs(flow.get_force(0,get_force_dts*dt))
-        #f1.plot(pos = (t,f))
+    if dts % get_force_dts == 0:
+        f = abs(flow.get_force(0,get_force_dts*dt))
+        f1.plot(pos = (t,f))
 
     m = -1  ##trying to delete a ball without problem
     while True:

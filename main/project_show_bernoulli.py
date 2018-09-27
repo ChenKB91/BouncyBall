@@ -27,7 +27,8 @@ scene = display(x=0,y=0,width=600,height=600,background=(0,0,0),center = vector(
                 ,autoscale = False,)  #!vis
 gd = gdisplay(x=600,y=0,width=300,height=300,xtitle='t',title = 'velocity',
               foreground=color.black,background=color.white)
-gd2= gdisplay(x=600,y=300,width=300,height=300,xtitle='t',title = 'Ball N',foreground=color.black,background=color.white)
+gd2= gdisplay(x=600,y=300,width=300,height=300,xtitle='t',title = 'Ball Amount',
+              foreground=color.black,background=color.white)
 
 f1 = gcurve(color=color.blue, gdisplay=gd)
 f2 = gcurve(color=color.red , gdisplay=gd)
@@ -111,7 +112,7 @@ class Container():
                         self.v[j] = reflect(w, self.v[j], part.v)
                         
                 
-        for part in self.parts:  # Wrong indent makes it violent....
+        for part in self.parts:  # Cyka blyat....
             part.update_pos(dt)  # update wall position
                 
 
@@ -141,7 +142,7 @@ class Container():
 #wall1 = [[3,3],[3,-10],[-3,-10],[-3,3]]
 #wall2 = [[-3,3],[3,3]] 
 pipe = [[0,3],[22,3],[22,-3],[0,-3]]  #pipe
-pipe2 = [[0,3],[8,3],[16,1],[22,1],[22,-1],[16,-1],[8,-3],[0,-3]]  #pipe
+pipe2 = [[0,3],[9,3],[15,1],[22,1],[22,-1],[15,-1],[9,-3],[0,-3]]  #pipe
 square_s = [[17,1],[15,1],[15,-1],[17,-1],[17,1]]   #square
 #big_square = [[5,5],[5,-5],[-5,-5],[-5,5],[5,5]]
 #wall = [[780,0],[1150,-140],[1180,-130],[1170,-90],[970,0],[780,0]]
