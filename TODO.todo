@@ -1,14 +1,14 @@
 Project:
-  Ball bouncing:    @due(2018-10-1)
+  ✔ Ball bouncing:    @done (18-10-04 13:43)
     ✔ A Container Class @critical @done (18-09-11 20:18)
     ✔ FIX Collision.reflect() @critical @done (18-09-20 16:43)
     ✔ Github Repository @done (18-09-20 16:43)
     ✔ Pressure caculating @critical @done (18-09-20 16:43)
-    ☐ Connect with util/NACA_Produce.py @critical
+    ✔ Connect with util/NACA_Produce.py @critical @done (18-10-04 13:43)
   NACA stuff:
     ✔ Reduce points number while keeping its shape alike @high @done (18-09-20 23:33)
     ☐ Tidy up code! @low 
-  Essay:
+  Essay:  @due(2018-10-15)
     ☐ Summary
     ☐ Main Paragraph
     ☐ Conclusion

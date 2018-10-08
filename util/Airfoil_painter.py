@@ -54,7 +54,7 @@ for i in range(len(final)):
     print('%.5f' % final[i][0] + ('%.5f' % final[i][1]).rjust(10) )
 
 orig_x, orig_y = -length/2, 0
-color("#FD8008", "#FECC66")
+color("#FDC008", "#FECC66")
 
 #draw the airfoil
 speed(0)
