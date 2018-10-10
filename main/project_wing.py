@@ -4,21 +4,19 @@
  /  = . =  - Developed by CKB, do not steal plz
 /     w   \
 
-update log:
-ver 1.0 - initial release
-ver 1.1 - fix weird acceleration
-ver 1.2 - fix "ball stuck in wall" problem
-ver 2.0 -  MOAR BALLS
-ver ??? - upload to Github, so no logging anymore
 '''
 from visual import *
 from visual.graph import *
 from Collision import *
 
+# Do the bloody importing
 import sys
-sys.path.append('/Users/benson/Desktop/Github/BouncyBall/')
 
-import util.NACA_produce as naca
+if __name__ == '__main__' and __package__ is None:
+    from os import sys, path
+    sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
+print(sys.path)
+from util import NACA_produce as naca
 
 # variables
 r = 0.1  # radius of ball

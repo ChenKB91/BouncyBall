@@ -4,12 +4,6 @@
  /  = . =  - Developed by CKB, do not steal plz
 /     w   \
 
-update log:
-ver 1.0 - initial release
-ver 1.1 - fix weird acceleration
-ver 1.2 - fix "ball stuck in wall" problem
-ver 2.0 -  MOAR BALLS
-ver ??? - upload to Github, so no logging anymore
 '''
 from visual import *
 from visual.graph import *
