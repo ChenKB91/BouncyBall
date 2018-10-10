@@ -7,4 +7,12 @@ License: MIT License
 ## Requirements
 To run this, you will need:  
 1. Python 2.7: https://www.python.org/downloads/release/python-2715/
-2. VPython: http://vpython.org/contents/download_windows.html
+2. VPython: http://vpython.org/contents/download_windows.html  
+
+## Log
+ver 1.0 - initial release  
+ver 1.1 - fixed weird acceleration  
+ver 1.2 - fixed "ball stuck in wall" problem  
+ver 2.0 - capable hoding more balls  
+ver ??? - uploaded to Github, so no logging anymore  
+

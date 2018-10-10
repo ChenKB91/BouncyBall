@@ -3,16 +3,19 @@
   A_____A
  /  = . =  - Developed by CKB, do not steal plz
 /     w   \
+current version: 1.2
+
+update log:
+ver 1.0 - initial release
+ver 1.1 - fix weird acceleration
+ver 1.2 - fix "ball stuck in wall" problem
+
+ver 2.0 -  MOAR BALLS
 
 '''
 from visual import *
 from visual.graph import *
 from Collision import *
-
-import sys
-sys.path.append('/Users/benson/Desktop/Github/BouncyBall/')
-
-import util.NACA_produce as naca
 
 # variables
 r = 0.1  # radius of ball
@@ -24,8 +27,8 @@ scene = display(x=0, y=0, width=600, height=600, background=(0, 0, 0), center=ve
                 , autoscale=False,)  # !vis
 gd = gdisplay(x=600, y=0, width=300, height=300, xtitle='t', title='velocity',
               foreground=color.black, background=color.white)
-gd2 = gdisplay(x=600, y=300, width=300, height=300, xtitle='t',
-               title='Ball N', foreground=color.black, background=color.white)
+gd2 = gdisplay(x=600, y=300, width=300, height=300, xtitle='t', title='Ball Amount',
+               foreground=color.black, background=color.white)
 
 f1 = gcurve(color=color.blue, gdisplay=gd)
 f2 = gcurve(color=color.red, gdisplay=gd)
@@ -58,7 +61,7 @@ class Container():
         self.v = random.uniform(-30, 30, [self.N, 3])  # velocity of balls
         for i in range(len(self.v)):
             #self.v[i][0] = 0
-            # self.v[i][1] = 0 #random.random(size = None)*10 - 5
+            #self.v[i][1] = 0 #random.random(size = None)*10 - 5
             self.v[i][2] = 0
 
         #pos_arr = random.uniform(-3,3,(N,3))
@@ -83,15 +86,14 @@ class Container():
         '''
         for j in range(self.N):
             for k in range(2):
-                # update ball position array
-                self.pos_arr[j][k] += self.v[j][k] * dt
+                self.pos_arr[j][k] += self.v[j][k] * \
+                    dt  # update ball position array
 
             # update visual ball position #!vis
             self.ball[j].pos = vector(self.pos_arr[j])
             #'''  ball hit detection
-
-            # all pairs of atom-to-atom vectors
-            r_array = self.pos_arr - self.pos_arr[:, newaxis]
+            r_array = self.pos_arr - \
+                self.pos_arr[:, newaxis]   # all pairs of atom-to-atom vectors
             # atom-to-atom distance squared
             rmag = sum(square(r_array), -1)
             hit = nonzero((rmag < 4 * r**2) - identity(self.N))
@@ -99,7 +101,8 @@ class Container():
             for p, q in hitlist:
                 # check if approaching
                 if sum((self.pos_arr[p] - self.pos_arr[q]) * (self.v[p] - self.v[q])) < 0:
-                    self.v[p], self.v[q] = vcollision(self.pos_arr[p], self.pos_arr[q], self.v[p], self.v[q])
+                    self.v[p], self.v[q] = vcollision(
+                        self.pos_arr[p], self.pos_arr[q], self.v[p], self.v[q])
                     #print('ball hit')
             #'''
 
@@ -111,12 +114,12 @@ class Container():
 
                     if checkhit(wall[i], wall[i + 1], self.pos_arr[j], r) and dot([self.v[j][0] - part.v[0], self.v[j][1] - part.v[1], 0], f) <= 0:
 
-                        # to calculate force (roughly)
-                        dp = self.ball_mass * (self.v[j] - reflect(w, self.v[j], part.v))
+                        dp = self.ball_mass * \
+                            (self.v[j] - reflect(w, self.v[j], part.v))
                         part.stored_momentum += dp
                         self.v[j] = reflect(w, self.v[j], part.v)
 
-        for part in self.parts:  # Wrong indent makes it violent....
+        for part in self.parts:  # Cyka blyat....
             part.update_pos(dt)  # update wall position
 
     def add_ball(self, pos, vel):
@@ -142,37 +145,36 @@ class Container():
     def get_force(self, index, passed_time):
         return self.parts[index].get_force(passed_time)
 
-
 #wall1 = [[3,3],[3,-10],[-3,-10],[-3,3]]
 #wall2 = [[-3,3],[3,3]]
-#pipe = [[0, 3], [22, 3], [22, -3], [0, -3]]  # pipe
-foil = naca.shiftscale(naca.main(int('0020'),10), shift = (10,0), scale = 5)
-
-pipe2 = [[0, 3], [5, 3], [8, 2], [22, 2], [22, -2], [8, -2], [5, -3], [0, -3]]  # pipe
-
-#square_s = [[17, 1], [15, 1], [15, -1], [17, -1], [17, 1]]  # square
-
+pipe = [[0, 3], [22, 3], [22, -3], [0, -3]]  # pipe
+pipe2 = [[0, 3], [9, 3], [15, 1], [22, 1], [
+    22, -1], [15, -1], [9, -3], [0, -3]]  # pipe
+square_s = [[17, 1], [15, 1], [15, -1], [17, -1], [17, 1]]  # square
 #big_square = [[5,5],[5,-5],[-5,-5],[-5,5],[5,5]]
 #wall = [[780,0],[1150,-140],[1180,-130],[1170,-90],[970,0],[780,0]]
-
+'''
+wall = [[0,60],[300,60],[850,240],[900,250],[940,220],[950,170],[940,130],[900,100],[730,60],[1170,40],
+        [1400,60],
+        [1400,0],[1070,0],[1200,-60],[1230,-90],[1240,-130],[1230,-170],[1180,-190],[1130,-180],[610,0],[300,20],
+        [0,0],[0,60]]
+#'''
 
 #wall1,wall2 = vectorfy(wall1), vectorfy(wall2)
-#flow = Container(parts = [Wall(pipe, v = vector(0,0,0)), Wall(square_s, v= vector(-1,0,0))], limit_udlr = (5,-5,-1,20))  #!vis
+# flow = Container(parts = [Wall(pipe, v = vector(0,0,0)), Wall(square_s, v= vector(-1,0,0))], limit_udlr = (5,-5,-1,20))  #!vis
 #flow = Container(parts = [Wall(big_square, v = vector(0,0,0))], limit_udlr = (5,-5,-5,5))
-#flow = Container(parts=[Wall(pipe2, v=vector(0, 0, 0))],limit_udlr=(5, -5, 0, 20))
-flow = Container(parts=[Wall(pipe2, v=vector(0, 0, 0)), Wall(foil, v = vector(0,0,0))],limit_udlr=(5, -5, 0, 20))
+flow = Container(parts=[Wall(pipe2, v=vector(0, 0, 0))],
+                 limit_udlr=(5, -5, 0, 20))
+
 
 u_limit = flow.limit_udlr[0]
 d_limit = flow.limit_udlr[1]
 l_limit = flow.limit_udlr[2]
 r_limit = flow.limit_udlr[3]
 
-indicator      = arrow(pos = vector(10,0,0), r = 0.1, color = color.red, shaftwidth = 0.1)
-indicator_norm = arrow(pos = vector(10,0,0), r = 0.1, color = color.green, shaftwidth = 0.1)
-
-get_force_dts = 80
+get_force_dts = 50
 while True:
-    rate(1/dt)
+    rate(100)
     t += dt
     dts += 1
 
@@ -181,11 +183,26 @@ while True:
     tmp, tmp2 = 0, 0
     avg, avg2 = 0, 0
     n1, n2 = 0, 0
+    for i in range(len(flow.v)):
+        if flow.pos_arr[i][0] < 9:
+            ab = abs(vector(flow.v[i]))**2
+            tmp += ab
+            n1 += 1
+    if n1 != 0:
+        avg = tmp / n1
 
-    if dts % get_force_dts == 0:
-        force_vec = flow.parts[1].get_force(get_force_dts*dt)
-        indicator.axis =  force_vec
-        indicator_norm.axis = norm(force_vec)
+    for i in range(len(flow.v)):
+        if flow.pos_arr[i][0] > 15:
+            ab = abs(vector(flow.v[i]))**2
+            tmp2 += ab
+            n2 += 1
+    if n2 != 0:
+        avg2 = tmp / n2
+
+    if n1 != 0:
+        f1.plot(pos=(t, avg))
+    if n2 != 0:
+        f2.plot(pos=(t, avg2))
 
     flow.OnUpdate()
 

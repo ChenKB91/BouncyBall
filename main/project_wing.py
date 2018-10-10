@@ -9,10 +9,14 @@ from visual import *
 from visual.graph import *
 from Collision import *
 
+# Do the bloody importing
 import sys
-sys.path.append('/Users/benson/Desktop/Github/BouncyBall/')
 
-import util.NACA_produce as naca
+if __name__ == '__main__' and __package__ is None:
+    from os import sys, path
+    sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
+print(sys.path)
+from util import NACA_produce as naca
 
 # variables
 r = 0.1  # radius of ball

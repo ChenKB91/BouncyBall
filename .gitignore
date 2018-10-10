@@ -1,6 +1,4 @@
 *.DS_Store
-/main/beta/
-/main/demonstration/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
