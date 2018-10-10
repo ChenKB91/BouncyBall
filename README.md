@@ -10,9 +10,9 @@ To run this, you will need:
 2. VPython: http://vpython.org/contents/download_windows.html  
 
 ## Log
-ver 1.0 - initial release  
-ver 1.1 - fixed weird acceleration  
-ver 1.2 - fixed "ball stuck in wall" problem  
-ver 2.0 - capable hoding more balls  
+ver 0.0 - initial release  
+ver 0.1 - fixed weird acceleration  
+ver 0.2 - fixed "ball stuck in wall" problem  
+ver 1.0 - capable hoding more balls  
 ver ??? - uploaded to Github, so no logging anymore  
 
