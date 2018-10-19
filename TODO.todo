@@ -7,17 +7,22 @@ Project:
     ✔ Connect with util/NACA_Produce.py @critical @done (18-10-04 13:43)
   NACA stuff:
     ✔ Reduce points number while keeping its shape alike @high @done (18-09-20 23:33)
-    ☐ Tidy up code! @low 
+    ✔ Tidy up code! @low @done (18-10-18 16:08)
   Essay:  @due(2018-10-15)
     ☐ Summary
     ☐ Main Paragraph
     ☐ Conclusion
     ☐ References
+  Boundary Element Method:
+    ☐ Node
+    ☐ Boundary Conditions
+    ☐ ???
   Software Simulation:
     ☐ Find A Nice Software 
 
   What's Next?:
     ☐ Build something with BEM
-    ☐ Build 3D model with NACA_Produce
+    ✔ Build 3D model with NACA_Produce @done (18-10-18 16:08)
+    ☐ Do some printing
     ☐ Find a wind tunnel
    
