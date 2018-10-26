@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 ''' 
   A_____A
- /  = . =\   < Developed by CKB >
+ /  = . =\< Developed by CKB >
 /     w   \
 current version: 1.2
 
