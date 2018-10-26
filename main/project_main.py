@@ -140,18 +140,12 @@ class Container():
 
 #wall1 = [[3,3],[3,-10],[-3,-10],[-3,3]]
 #wall2 = [[-3,3],[3,3]]
-<<<<<<< HEAD
-#pipe = [[0, 3], [22, 3], [22, -3], [0, -3]]  # pipe
-#foil = naca.shiftscale(naca.main(int('0020'),10), shift = (10,0), scale = 5)
-
-#pipe2 = [[0, 3], [5, 3], [8, 2], [22, 2], [22, -2], [8, -2], [5, -3], [0, -3]]  # pipe
-=======
 # pipe = [[0, 3], [22, 3], [22, -3], [0, -3]]  # pipe
 foil = naca.shiftscale(naca.main(int('0020'), 10), shift=(10, 0), scale=5)
 
 pipe2 = [[0, 3], [5, 3], [8, 2], [22, 2], [
     22, -2], [8, -2], [5, -3], [0, -3]]  # pipe
->>>>>>> 99d46fe4c8497c0de0707571d990bb9ee0e77cd9
+
 
 # square_s = [[17, 1], [15, 1], [15, -1], [17, -1], [17, 1]]  # square
 
@@ -159,32 +153,22 @@ big_square = [[5,5],[5,-5],[-5,-5],[-5,5]]
 mov_side = [[-5,5],[5,5]]
 
 #wall1,wall2 = vectorfy(wall1), vectorfy(wall2)
-<<<<<<< HEAD
-#flow = Container(parts = [Wall(pipe, v = vector(0,0,0)), Wall(square_s, v= vector(-1,0,0))], limit_udlr = (5,-5,-1,20))  #!vis
-flow = Container(parts = [Wall(big_square),Wall(mov_side)], limit_udlr = (5,-5,-5,5))
-#flow = Container(parts=[Wall(pipe2, v=vector(0, 0, 0))],limit_udlr=(5, -5, 0, 20))
-#flow = Container(parts=[Wall(pipe2, v=vector(0, 0, 0)), Wall(foil, v = vector(0,0,0))],limit_udlr=(5, -5, 0, 20))
-=======
+
 # flow = Container(parts = [Wall(pipe, v = vector(0,0,0)), Wall(square_s, v= vector(-1,0,0))], limit_udlr = (5,-5,-1,20))  #!vis
 #flow = Container(parts = [Wall(big_square, v = vector(0,0,0))], limit_udlr = (5,-5,-5,5))
 #flow = Container(parts=[Wall(pipe2, v=vector(0, 0, 0))],limit_udlr=(5, -5, 0, 20))
 flow = Container(parts=[Wall(pipe2, v=vector(0, 0, 0)), Wall(
     foil, v=vector(0, 0, 0))], limit_udlr=(5, -5, 0, 20))
->>>>>>> 99d46fe4c8497c0de0707571d990bb9ee0e77cd9
 
 u_limit = flow.limit_udlr[0]
 d_limit = flow.limit_udlr[1]
 l_limit = flow.limit_udlr[2]
 r_limit = flow.limit_udlr[3]
 
-<<<<<<< HEAD
-indicator      = arrow(pos = vector(0,0,0), r = 0.1, color = color.red, shaftwidth = 0.1)
-indicator_norm = arrow(pos = vector(0,0,0), r = 0.1, color = color.green, shaftwidth = 0.1)
-=======
+
 indicator = arrow(pos=vector(10, 0, 0), r=0.1, color=color.red, shaftwidth=0.1)
 indicator_norm = arrow(pos=vector(10, 0, 0), r=0.1,
                        color=color.green, shaftwidth=0.1)
->>>>>>> 99d46fe4c8497c0de0707571d990bb9ee0e77cd9
 
 get_force_dts = 80
 def key_input(evt):
