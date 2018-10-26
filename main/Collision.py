@@ -5,9 +5,7 @@ from visual import*
     To achieve great things, two things are needed;
     a plan, and not quite enough time.  -- Leonard Bernstein
 ----
-    To write good code, two things are required;
-    a nice looking editor, and a good amount of coffee.  -- CKB
-----
+
 Algorithm:
 1. initialize:
     class wall: generate 1 piece of wall, capable of moving
@@ -25,10 +23,9 @@ Algorithm:
     calculate force by (momentum changed)/(time passed)
 '''
 
-
 class Wall():  # A piece of wall, makes up class Container
 
-    def __init__(self, wall_list, v):
+    def __init__(self, wall_list, v=vector(0,0,0)):
         self.wall_list = vectorfy(wall_list)
         self.visual = curve(pos=wall_list)
         self.v = vector(v)

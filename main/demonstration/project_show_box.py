@@ -15,7 +15,7 @@ ver 2.0 -  MOAR BALLS
 '''
 from visual import *
 from visual.graph import *
-from Collision import *
+from ../Collision import *
 
 ## variables
 r = 0.1 #radius of ball
