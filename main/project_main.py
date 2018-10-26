@@ -99,7 +99,8 @@ class Container():
             for p, q in hitlist:
                 # check if approaching
                 if sum((self.pos_arr[p] - self.pos_arr[q]) * (self.v[p] - self.v[q])) < 0:
-                    self.v[p], self.v[q] = vcollision(self.pos_arr[p], self.pos_arr[q], self.v[p], self.v[q])
+                    self.v[p], self.v[q] = vcollision(
+                        self.pos_arr[p], self.pos_arr[q], self.v[p], self.v[q])
                     #print('ball hit')
             #'''
 
@@ -112,7 +113,8 @@ class Container():
                     if checkhit(wall[i], wall[i + 1], self.pos_arr[j], r) and dot([self.v[j][0] - part.v[0], self.v[j][1] - part.v[1], 0], f) <= 0:
 
                         # to calculate force (roughly)
-                        dp = self.ball_mass * (self.v[j] - reflect(w, self.v[j], part.v))
+                        dp = self.ball_mass * \
+                            (self.v[j] - reflect(w, self.v[j], part.v))
                         part.stored_momentum += dp
                         self.v[j] = reflect(w, self.v[j], part.v)
 
@@ -145,30 +147,33 @@ class Container():
 
 #wall1 = [[3,3],[3,-10],[-3,-10],[-3,3]]
 #wall2 = [[-3,3],[3,3]]
-#pipe = [[0, 3], [22, 3], [22, -3], [0, -3]]  # pipe
-foil = naca.shiftscale(naca.main(int('0020'),10), shift = (10,0), scale = 5)
+# pipe = [[0, 3], [22, 3], [22, -3], [0, -3]]  # pipe
+foil = naca.shiftscale(naca.main(int('0020'), 10), shift=(10, 0), scale=5)
 
-pipe2 = [[0, 3], [5, 3], [8, 2], [22, 2], [22, -2], [8, -2], [5, -3], [0, -3]]  # pipe
+pipe2 = [[0, 3], [5, 3], [8, 2], [22, 2], [
+    22, -2], [8, -2], [5, -3], [0, -3]]  # pipe
 
-#square_s = [[17, 1], [15, 1], [15, -1], [17, -1], [17, 1]]  # square
+# square_s = [[17, 1], [15, 1], [15, -1], [17, -1], [17, 1]]  # square
 
 #big_square = [[5,5],[5,-5],[-5,-5],[-5,5],[5,5]]
 #wall = [[780,0],[1150,-140],[1180,-130],[1170,-90],[970,0],[780,0]]
 
 
 #wall1,wall2 = vectorfy(wall1), vectorfy(wall2)
-#flow = Container(parts = [Wall(pipe, v = vector(0,0,0)), Wall(square_s, v= vector(-1,0,0))], limit_udlr = (5,-5,-1,20))  #!vis
+# flow = Container(parts = [Wall(pipe, v = vector(0,0,0)), Wall(square_s, v= vector(-1,0,0))], limit_udlr = (5,-5,-1,20))  #!vis
 #flow = Container(parts = [Wall(big_square, v = vector(0,0,0))], limit_udlr = (5,-5,-5,5))
 #flow = Container(parts=[Wall(pipe2, v=vector(0, 0, 0))],limit_udlr=(5, -5, 0, 20))
-flow = Container(parts=[Wall(pipe2, v=vector(0, 0, 0)), Wall(foil, v = vector(0,0,0))],limit_udlr=(5, -5, 0, 20))
+flow = Container(parts=[Wall(pipe2, v=vector(0, 0, 0)), Wall(
+    foil, v=vector(0, 0, 0))], limit_udlr=(5, -5, 0, 20))
 
 u_limit = flow.limit_udlr[0]
 d_limit = flow.limit_udlr[1]
 l_limit = flow.limit_udlr[2]
 r_limit = flow.limit_udlr[3]
 
-indicator      = arrow(pos = vector(10,0,0), r = 0.1, color = color.red, shaftwidth = 0.1)
-indicator_norm = arrow(pos = vector(10,0,0), r = 0.1, color = color.green, shaftwidth = 0.1)
+indicator = arrow(pos=vector(10, 0, 0), r=0.1, color=color.red, shaftwidth=0.1)
+indicator_norm = arrow(pos=vector(10, 0, 0), r=0.1,
+                       color=color.green, shaftwidth=0.1)
 
 get_force_dts = 80
 while True:
@@ -184,7 +189,7 @@ while True:
 
     if dts % get_force_dts == 0:
         force_vec = flow.parts[1].get_force(get_force_dts*dt)
-        indicator.axis =  force_vec
+        indicator.axis = force_vec
         indicator_norm.axis = norm(force_vec)
 
     flow.OnUpdate()
