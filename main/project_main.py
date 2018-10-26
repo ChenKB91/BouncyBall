@@ -15,9 +15,7 @@ sys.path.append('/Users/benson/Desktop/Github/BouncyBall/')
 import util.NACA_produce as naca
 
 # variables
-r = 0.1  # radius of ball
-#N = 50
-
+r = 0.2  # radius of ball
 
 # visual stuff
 scene = display(x=0, y=0, width=600, height=600, background=(0, 0, 0), center=vector(11, 0)  # !vis
@@ -79,7 +77,7 @@ class Container():
 
     def OnUpdate(self):
         '''
-        The main update function.
+        The main update function. Call every frame.
         '''
         for j in range(self.N):
             for k in range(2):
