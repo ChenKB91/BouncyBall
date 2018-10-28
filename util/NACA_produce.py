@@ -48,56 +48,6 @@ def main(serial, rot_angle):
     dX_medium = 0.05
     dX_rough = 0.1
 
-    if 0 < X < P * C:
-
-        Yc = M * X / (P**2) * (2 * P - X / C)
-        Tan_theta = (2 * M * (C * P - X)) / ((P**2) * C)
-
-        Cos_theta = ((((P**2) * C)**2) /
-                     (((2 * M * (C * P - X))**2) + (((P**2) * C)**2)))**0.5
-
-        Sin_theta = (((2 * M * (C * P - X))**2) /
-                     (((2 * M * (C * P - X))**2) + (((P**2) * C)**2)))**0.5
-
-    else:
-
-        Yc = M * (C - X) / ((1 - P)**2) * (1 + (X / C) - 2 * P)
-
-        Tan_theta = (2 * M * (C * P - X)) / (((1 - P)**2) * C)
-
-        Cos_theta = (((((1 - P)**2) * C)**2) /
-                     (((2 * M * (C * P - X))**2) + ((((1 - P)**2) * C)**2)))**0.5
-
-        Sin_theta = (((2 * M * (C * P - X))**2) /
-                     (((2 * M * (C * P - X))**2) + ((((1 - P)**2) * C)**2)))**0.5
-
-    # theta=(2*M*(C*P-X))/((P**2)*C)
-
-    # Cos_theta=((((P**2)*C)**2)/(((2*M*(C*P-X))**2)+(((P**2)*C)**2)))**(1.0/2)
-
-    # Sin_theta=(((2*M*(C*P-X))**2)/(((2*M*(C*P-X))**2)+(((P**2)*C)**2)))**(1.0/2)
-
-    S1 = 0.2969 * ((X / C)**(0.5))
-    S2 = (-0.126) * (X / C)
-    S3 = (-0.3516) * (X / C)**2
-    S4 = (0.2843) * (X / C)**3
-    S5 = ((-0.1015) * ((X / C)**4))
-    Yt = 5 * T * C * (S1 + S2 + S3 + S4 + S5)
-
-    X_U = X - Yt * Sin_theta
-
-    Y_U = Yc + Yt * Cos_theta
-
-    X_L = X + Yt * Sin_theta
-
-    Y_L = Yc - Yt * Cos_theta
-
-    # Yt=5*T*C*(((0.2969)*((X/C)**(1/2)))+(-0.126)*(X/C)+((-0.3516)*((X/C)**2))+((0.2843)*((X/C)**3))+((-0.1015)*((X/C)**4)))
-
-    t = 0
-
-    final = []
-
     while (X <= C):  # DO UPPER PART
         if X <= 0.026:
             dX = dX_finest
@@ -142,9 +92,6 @@ def main(serial, rot_angle):
         coor = [X_U, -Y_U]
         coor = rotate(angle=rot_angle, O=O, P=coor)
         final.append([round(coor[0], 5), round(coor[1], 5)])
-        # print(round(coor[0],3),round(coor[1],3))
-       # print(round(X_L,3),round(Y_L,5))
-       # print(round(X,3),round(Yt,5))
 
         if (X < dX):
             break
