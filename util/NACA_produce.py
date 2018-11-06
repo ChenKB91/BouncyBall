@@ -48,6 +48,8 @@ def main(serial, rot_angle):
     dX_medium = 0.05
     dX_rough = 0.1
 
+    final = []
+
     while (X <= C):  # DO UPPER PART
         if X <= 0.026:
             dX = dX_finest
@@ -110,6 +112,7 @@ def main(serial, rot_angle):
             dX = dX_medium
         else:
             dX = dX_rough
+        
         S1 = 0.2969 * ((X / C)**(0.5))
         S2 = (-0.126) * (X / C)
         S3 = (-0.3516) * (X / C)**2

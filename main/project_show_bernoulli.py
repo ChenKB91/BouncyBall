@@ -33,6 +33,8 @@ gd2 = gdisplay(x=600, y=300, width=300, height=300, xtitle='t', title='Ball Amou
 f1 = gcurve(color=color.blue, gdisplay=gd)
 f2 = gcurve(color=color.red, gdisplay=gd)
 f3 = gcurve(color=color.green, gdisplay=gd2)
+f_hidden = gcurve(color=color.white, gdisplay=gd)
+
 
 random.seed(1)
 
@@ -148,7 +150,7 @@ class Container():
 #wall1 = [[3,3],[3,-10],[-3,-10],[-3,3]]
 #wall2 = [[-3,3],[3,3]]
 pipe = [[0, 3], [22, 3], [22, -3], [0, -3]]  # pipe
-pipe2 = [[0, 3], [9, 3], [15, 1], [22, 1], [22, -1], [15, -1], [9, -3], [0, -3]]  # pipe
+pipe2 = [[0, 3], [9, 3], [15, 2], [22, 2], [22, -2], [15, -2], [9, -3], [0, -3]]  # pipe
 square_s = [[17, 1], [15, 1], [15, -1], [17, -1], [17, 1]]  # square
 #big_square = [[5,5],[5,-5],[-5,-5],[-5,5],[5,5]]
 #wall = [[780,0],[1150,-140],[1180,-130],[1170,-90],[970,0],[780,0]]
@@ -172,6 +174,7 @@ l_limit = flow.limit_udlr[2]
 r_limit = flow.limit_udlr[3]
 
 get_force_dts = 50
+f_hidden.plot(pos = (-1,0))
 while True:
     rate(100)
     t += dt
@@ -200,7 +203,7 @@ while True:
 
     if n1 != 0:
         f1.plot(pos=(t, avg))
-    if n2 != 0:
+    if n2 != 0 and n2 > 3:
         f2.plot(pos=(t, avg2))
 
     flow.OnUpdate()

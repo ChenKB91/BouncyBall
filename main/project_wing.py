@@ -150,7 +150,7 @@ class Container():
         return self.parts[index].get_force(passed_time)
 
 
-foil = naca.shiftscale(naca.main(int('0020'), 10), shift=(10, 0), scale=5)
+foil = naca.shiftscale(naca.main(int('4412'), 1), shift=(10, 0), scale=5)
 
 pipe2 = [[0, 3], [5, 3], [8, 2], [22, 2], [
     22, -2], [8, -2], [5, -3], [0, -3]]  # pipe
